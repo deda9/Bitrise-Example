@@ -1,0 +1,32 @@
+fastlane_version "2.143.0"
+
+default_platform :ios
+
+platform :ios do
+  
+  desc "Submit a new Testing Build pointing to staging to Apple TestFlight"
+  lane :testflight do
+    certificates_appstore
+    gym(scheme: "Bitrise-Example")
+    upload_to_testflight(
+      skip_submission: true,
+      notify_external_testers: false,
+      skip_waiting_for_build_processing: true 
+    )
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    cocoapods
+    certificates_appstore
+    gym(scheme: "Bitrise-Example")
+    deliver(skip_screenshots: true, force: true)
+  end
+
+
+  desc "Sync appstore certificates via match (readonly)"
+  lane :certificates_appstore do
+    match(app_identifier: ["deda9.Bitrise-Example"], type: "appstore", readonly: true)
+  end
+
+end
