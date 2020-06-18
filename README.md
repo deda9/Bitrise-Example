@@ -8,4 +8,4 @@
 
 3- How run your faslane commands like (testFlight_production, testFlight_Stage or release) via Slack.
 
-For more information you can check this tutorial out.
+For more information you can check [this tutorial](https://medium.com/dev-genius/how-to-integrate-bitrise-with-github-and-fastlane-via-slack-ios-9dfb85348689) out.
